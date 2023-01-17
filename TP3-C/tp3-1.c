@@ -84,14 +84,46 @@ unsigned short nbJours(enum Mois mois)
     return 0;
 }
 
+bool bissextile(unsigned annee)
+{
+    printf("Entrez une année");
+    scanf("%d", &annee);
+    
+    /*while (annee < 1 || annee > 12)
+    {
+        printf("Veuillez indiquer un nombre entre 1 et 12\n\n");
+        printf("Sélectionnez un mois dans l'année entre 1 et 12: ");
+        scanf("%u", &mois);
+    }*/
+    
+    if(annee % 4 == 0)
+        {
+            if( annee % 100 == 0)
+            {
+                if ( annee % 400 == 0)
+                    printf("%d est une année bissextile\n", annee);
+                else
+                    printf("%d n'est pas une année bissextile\n", annee);
+            }
+            else
+                printf("%d est une année bissextile\n", annee );
+        }
+        else
+            printf("%d n'est pas une année bissextile\n", annee);
+    
+    return 0;
+}
+
 int retour (void)
 {
     enum Mois mois;
     mois = 0;
+    unsigned annee = 0;
     char choice;
     
     do{
         nbJours(mois);
+        bissextile(annee);
         printf("Voulez-vous recommencer l'exercice? [oO] ? N\n");
         scanf(" %c", &choice);
         
