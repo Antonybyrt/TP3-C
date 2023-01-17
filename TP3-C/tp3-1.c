@@ -89,13 +89,6 @@ bool bissextile(unsigned annee)
     printf("Entrez une année");
     scanf("%d", &annee);
     
-    /*while (annee < 1 || annee > 12)
-    {
-        printf("Veuillez indiquer un nombre entre 1 et 12\n\n");
-        printf("Sélectionnez un mois dans l'année entre 1 et 12: ");
-        scanf("%u", &mois);
-    }*/
-    
     if(annee % 4 == 0)
         {
             if( annee % 100 == 0)
