@@ -7,6 +7,51 @@
 
 #include "tp3-1.h"
 
+const char* MoisToString(enum Mois mois)
+{
+    switch (mois)
+    {
+        case 1:
+            printf("Janvier");
+            break;
+        case 2:
+            printf("Février");
+            break;
+        case 3:
+            printf("Mars");
+            break;
+        case 4:
+            printf("Avril");
+            break;
+        case 5:
+            printf("Mai");
+            break;
+        case 6:
+            printf("Juin");
+            break;
+        case 7:
+            printf("Juillet");
+            break;
+        case 8:
+            printf("Août");
+            break;
+        case 9:
+            printf("Septembre");
+            break;
+        case 10:
+            printf("Octobre");
+            break;
+        case 11:
+            printf("Novembre");
+            break;
+        case 12:
+            printf("Décembre");
+            break;
+    }
+    
+    return 0;
+}
+
 unsigned short nbJours(enum Mois mois)
 {
     printf("Sélectionnez un mois dans l'année entre 1 et 12: ");
@@ -19,74 +64,55 @@ unsigned short nbJours(enum Mois mois)
             scanf("%u", &mois);
         }
     
-        if (mois == Janvier)
+        switch (mois)
         {
-            char nom[]="Janvier";
-            printf("Il y a 31 jours dans le mois de %s\n", nom);
-        }
-        else if (mois == Fevrier)
-        {
-            char nom[]="Février";
-            printf("Il y a 28 jours dans le mois de %s\n", nom);
-        }
-        else if (mois == Mars)
-        {
-            char nom[]="Mars";
-            printf("Il y a 31 jours dans le mois de %s\n", nom);
-        }
-        else if (mois == Avril)
-        {
-            char nom[]="Avril";
-            printf("Il y a 30 jours dans le mois d'%s\n", nom);
-        }
-        else if (mois == Mai)
-        {
-            char nom[]="Mai";
-            printf("Il y a 31 jours dans le mois de %s\n", nom);
-        }
-        else if (mois == Juin)
-        {
-            char nom[]="Juin";
-            printf("Il y a 30 jours dans le mois de %s\n", nom);
-        }
-        else if (mois == Juillet)
-        {
-            char nom[]="Juillet";
-            printf("Il y a 31 jours dans le mois de %s\n", nom);
-        }
-        else if (mois == Aout)
-        {
-            char nom[]="Aout";
-            printf("Il y a 31 jours dans le mois d'%s\n", nom);
-        }
-        else if (mois == Septembre)
-        {
-            char nom[]="Septembre";
-            printf("Il y a 30 jours dans le mois de %s\n", nom);
-        }
-        else if (mois == Octobre)
-        {
-            char nom[]="Octobre";
-            printf("Il y a 31 jours dans le mois d'%s\n", nom);
-        }
-        else if (mois  == Novembre)
-        {
-            char nom[]="Novembre";
-            printf("Il y a 30 jours dans le mois de %s\n", nom);
-        }
-        else if (mois == Decembre)
-        {
-            char nom[]="Décembre";
-            printf("Il y a 31 jours dans le mois de %s\n", nom);
+            case 1:
+                printf("Il y a 31 jours dans le mois de ");
+                break;
+            case 2:
+                printf("Il y a 28 jours dans le mois de ");
+                break;
+            case 3:
+                printf("Il y a 31 jours dans le mois de ");
+                break;
+            case 4:
+                printf("Il y a 30 jours dans le mois d'");
+                break;
+            case 5:
+                printf("Il y a 31 jours dans le mois de ");
+                break;
+            case 6:
+                printf("Il y a 30 jours dans le mois de ");
+                break;
+            case 7:
+                printf("Il y a 31 jours dans le mois de ");
+                break;
+            case 8:
+                printf("Il y a 31 jours dans le mois d'");
+                break;
+            case 9:
+                printf("Il y a 30 jours dans le mois de ");
+                break;
+            case 10:
+                printf("Il y a 31 jours dans le mois d'");
+                break;
+            case 11:
+                printf("Il y a 30 jours dans le mois de ");
+                break;
+            case 12 :
+                printf("Il y a 31 jours dans le mois de ");
+                break;
         }
     
+    MoisToString(mois);
+    printf("\n");
     
     return 0;
 }
 
 bool bissextile(unsigned annee)
 {
-    printf("Entrez une année");
+    printf("Entrez une année ");
     scanf("%d", &annee);
     
     if(annee % 4 == 0)
