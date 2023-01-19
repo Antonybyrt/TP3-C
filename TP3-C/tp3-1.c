@@ -135,11 +135,47 @@ const char* MoisToString(enum Mois mois)
     return 0;
 }
 
+Date* creer_Date(void)
+{
+    Date* pDeDate; // Pointeur pour la variable structurée
+    
+    short int nb_date = 0;
+    
+    printf("Combien de date(s) souhaitez-vous créer ? ");
+    scanf("%hd", &nb_date);
+    
+    //Allocation d'una variable structurée
+    pDeDate = (Date*) malloc( sizeof(Date));
+    if (pDeDate == NULL)
+    {
+        printf("\n Allocation impossible");
+        exit(84); //On quitte le programme
+    }
+    
+    liberer_Date(&pDeDate);
+    
+    return pDeDate;
+}
+
+void liberer_Date(Date** d)
+{
+    free(d);
+}
+
+void initialiser_Date(Date* d)
+{
+    d->jour = 01;
+    d->mois = 1;
+    d->annee = 2023;
+}
+
+
 int retour (void)
 {
     enum Mois mois;
     mois = 0;
     unsigned annee = 0;
+    static Date date;
     char choice;
     
     do{

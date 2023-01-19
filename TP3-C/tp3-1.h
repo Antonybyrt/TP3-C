@@ -29,6 +29,9 @@ unsigned short nbJours(enum Mois mois);
 bool bissextile(unsigned annee);
 const char* MoisToString(enum Mois mois);
 
+Date* creer_Date(void);
+void liberer_Date(Date** d);
+void initialiser_Date(Date* d);
 
 
 #endif
