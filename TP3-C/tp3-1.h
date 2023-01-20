@@ -32,6 +32,7 @@ const char* MoisToString(enum Mois mois);
 Date* creer_Date(void);
 void liberer_Date(Date** d);
 void initialiser_Date(Date* d);
+void increment_Date(Date* d, unsigned n);
 
 
 #endif

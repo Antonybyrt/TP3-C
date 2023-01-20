@@ -164,9 +164,114 @@ void liberer_Date(Date** d)
 
 void initialiser_Date(Date* d)
 {
-    d->jour = 01;
+    d->jour = 1;
     d->mois = 1;
     d->annee = 2023;
+}
+
+void increment_Date(Date* d, unsigned n)
+{
+    printf("De combien de jours souhaitez-vous incrémenter votre date ?");
+    scanf("%u", &n);
+    
+    for (int i = 0; i < n; i ++)
+    {
+        if ((d->mois == 1 || d->mois == 3 || d->mois == 5 || d->mois == 7 || d->mois == 8 || d->mois == 10 || d->mois == 12) && (d->annee % 4 == 0 && d->annee % 100 == 0 && d->annee % 400 == 0))
+        {
+            d->jour ++;
+            
+            if ((i % 31) == 0)
+            {
+                d->jour = 0;
+                d->mois ++;
+            }
+            if ((i % 366) == 0)
+            {
+                d->mois = 0;
+                d->annee ++;
+            }
+        }
+        
+        if ((d->mois == 4 || d->mois == 6 || d->mois == 9 || d->mois == 11) && (d->annee % 4 == 0 && d->annee % 100 == 0 && d->annee % 400 == 0))
+        {
+            d->jour ++;
+            
+            if ((i % 30) == 0)
+            {
+                d->jour = 0;
+                d->mois ++;
+            }
+            if ((i % 366) == 0)
+            {
+                d->mois = 0;
+                d->annee ++;
+            }
+        }
+        
+        if ((d->mois == 1 || d->mois == 3 || d->mois == 5 || d->mois == 7 || d->mois == 8 || d->mois == 10 || d->mois == 12) && (d->annee % 4 != 0 || d->annee % 100 != 0 || d->annee % 400 != 0))
+        {
+            d->jour ++;
+            
+            if ((i % 31) == 0)
+            {
+                d->jour = 0;
+                d->mois ++;
+            }
+            if ((i % 365) == 0)
+            {
+                d->mois = 0;
+                d->annee ++;
+            }
+        }
+        
+        if ((d->mois == 4 || d->mois == 6 || d->mois == 9 || d->mois == 11) && (d->annee % 4 != 0 || d->annee % 100 != 0 || d->annee % 400 != 0))
+        {
+            d->jour ++;
+            
+            if ((i % 30) == 0)
+            {
+                d->jour = 0;
+                d->mois ++;
+            }
+            if ((i % 365) == 0)
+            {
+                d->mois = 0;
+                d->annee ++;
+            }
+        }
+        
+        if ((d->mois == 2) && (d->annee % 4 == 0 && d->annee % 100 == 0 && d->annee % 400 == 0))
+        {
+            d->jour ++;
+            
+            if ((i % 29) == 0)
+            {
+                d->jour = 0;
+                d->mois ++;
+            }
+            if ((i % 366) == 0)
+            {
+                d->mois = 0;
+                d->annee ++;
+            }
+        }
+        
+        if ((d->mois == 2) && (d->annee % 4 != 0 || d->annee % 100 != 0 || d->annee % 400 != 0))
+        {
+            d->jour ++;
+            
+            if ((i % 28) == 0)
+            {
+                d->jour = 0;
+                d->mois ++;
+            }
+            if ((i % 365) == 0)
+            {
+                d->mois = 0;
+                d->annee ++;
+            }
+        }
+    }
 }
 
 
