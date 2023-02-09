@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <time.h>
 
 
 enum Mois
@@ -33,6 +34,6 @@ Date* creer_Date(void);
 void liberer_Date(Date** d);
 void initialiser_Date(Date* d);
 void increment_Date(Date* d, unsigned n);
-
+short int comparer_Date( const Date* d1, const Date* d2);
 
 #endif
