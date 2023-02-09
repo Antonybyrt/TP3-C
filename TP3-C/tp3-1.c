@@ -11,7 +11,7 @@
 
 unsigned short nbJours(enum Mois mois)
 {
-    printf("Sélectionnez un mois dans l'année entre 1 et 12: ");
+    printf("Rentrez le mois de votre date\n");
     scanf("%u", &mois);
     
         while (mois < 1 || mois > 12)
@@ -64,7 +64,7 @@ unsigned short nbJours(enum Mois mois)
     MoisToString(mois);
     printf("\n");
     
-    return 0;
+    return mois;
 }
 
 bool bissextile(unsigned annee)
@@ -118,33 +118,20 @@ const char* MoisToString(enum Mois mois)
 
 Date* creer_Date(void)
 {
-    Date* pDeDate; // Pointeur pour la variable structurée
-    
-    short int nb_date = 0;
-    
-    printf("Combien de date(s) souhaitez-vous créer ? ");
-    scanf("%hd", &nb_date);
-    
-    //Allocation d'une variable structurée
-    pDeDate = (Date*) malloc( sizeof(Date));
-    if (pDeDate == NULL)
-    {
-        printf("\n Allocation impossible");
-        exit(84); //On quitte le programme
-    }
+    time_t date = time(NULL);
 
-    // Définition de la date du jour
-    time_t rawtime;
-    struct tm *timeinfo;
-    time(&rawtime);
-    timeinfo = localtime(&rawtime);
+     
+        struct tm dateconvert = *localtime(&date);
 
-    // Stockage de cette date dans la structure
-    pDeDate->jour = (unsigned short)timeinfo->tm_mday;
-    pDeDate->mois = (enum Mois)(timeinfo->tm_mon + 1);
-    pDeDate->annee = (unsigned)timeinfo->tm_year + 1900;
-    
-    return pDeDate;
+
+        char pDeDate[sizeof "JJ/MM/AAAA HH:MM:SS"];
+
+        strftime(pDeDate, sizeof pDeDate, "%d/%m/%Y", &dateconvert);
+
+
+        printf("la date cree est %s\n", pDeDate);
+
+        return 0;
 }
 
 void liberer_Date(Date** d)
@@ -154,14 +141,42 @@ void liberer_Date(Date** d)
 
 void initialiser_Date(Date* d)
 {
+    d = (Date*)malloc(sizeof(Date));
+        if (d == NULL) {
+            exit(84);
+        }
+    
+    unsigned int n = 0;
+    
     printf ("Rentrez le jour de votre date\n");
     scanf("%hd", &d->jour);
     
-    printf("Rentrez le mois de votre date\n");
-    scanf("%d", &d->mois);
+    if (d->jour > 31)
+    {
+        exit (84);
+    }
+    
+    nbJours(d->mois);
+    
+    if (d->jour == 31 && (d->mois == 2 || d->mois == 4 || d->mois == 6 || d->mois == 9 || d->mois == 11 ))
+        {
+        exit (84);
+        }
+    
+    if (d->jour == 30 && d->mois == 2)
+        {
+        exit (84);
+        }
     
     printf("Rentrez l'année de votre date\n");
     scanf("%d", &d->annee);
+    
+    if (bissextile(d->annee == false) && d->jour == 29)
+    {
+        exit (84);
+    }
+    
+    increment_Date(d, n);
 }
 
 void increment_Date(Date* d, unsigned n)
@@ -177,12 +192,12 @@ void increment_Date(Date* d, unsigned n)
             
             if ((i % 31) == 0)
             {
-                d->jour = 0;
+                d->jour = 1;
                 d->mois ++;
             }
             if ((i % 366) == 0)
             {
-                d->mois = 0;
+                d->mois = 1;
                 d->annee ++;
             }
         }
@@ -193,12 +208,12 @@ void increment_Date(Date* d, unsigned n)
             
             if ((i % 30) == 0)
             {
-                d->jour = 0;
+                d->jour = 1;
                 d->mois ++;
             }
             if ((i % 366) == 0)
             {
-                d->mois = 0;
+                d->mois = 1;
                 d->annee ++;
             }
         }
@@ -209,12 +224,12 @@ void increment_Date(Date* d, unsigned n)
             
             if ((i % 31) == 0)
             {
-                d->jour = 0;
+                d->jour = 1;
                 d->mois ++;
             }
             if ((i % 365) == 0)
             {
-                d->mois = 0;
+                d->mois = 1;
                 d->annee ++;
             }
         }
@@ -225,12 +240,12 @@ void increment_Date(Date* d, unsigned n)
             
             if ((i % 30) == 0)
             {
-                d->jour = 0;
+                d->jour = 1;
                 d->mois ++;
             }
             if ((i % 365) == 0)
             {
-                d->mois = 0;
+                d->mois = 1;
                 d->annee ++;
             }
         }
@@ -241,12 +256,12 @@ void increment_Date(Date* d, unsigned n)
             
             if ((i % 29) == 0)
             {
-                d->jour = 0;
+                d->jour = 1;
                 d->mois ++;
             }
             if ((i % 366) == 0)
             {
-                d->mois = 0;
+                d->mois = 1;
                 d->annee ++;
             }
         }
@@ -257,68 +272,87 @@ void increment_Date(Date* d, unsigned n)
             
             if ((i % 28) == 0)
             {
-                d->jour = 0;
+                d->jour = 1;
                 d->mois ++;
             }
             if ((i % 365) == 0)
             {
-                d->mois = 0;
+                d->mois = 1;
                 d->annee ++;
             }
         }
     }
+    
+    printf("\n La date incrémentée est : %hd/%d/%d\n", d->jour, d->mois, d->annee);
 }
 
 short int comparer_Date( const Date* d1, const Date* d2)
 {
+    
+    d1 = (Date*)malloc(sizeof(Date));
+        if (d1 == NULL) {
+            exit(84);
+        }
+    d2 = (Date*)malloc(sizeof(Date));
+        if (d2 == NULL) {
+            exit(84);
+        }
+    
     if (d1->annee < d2->annee)
         {
-            return -1;
+            printf("-1\n");
         }
         else if (d1->annee > d2->annee)
         {
-            return 1;
+            printf("1\n");
         }
         else
         {
             if (d1->mois < d2->mois)
             {
-                return -1;
+                printf("-1\n");
             }
             else if (d1->mois > d2->mois)
             {
-                return 1;
+                printf("1\n");
             }
             else
             {
                 if (d1->jour < d2->jour)
                 {
-                    return -1;
+                    printf("-1\n");
                 }
                 else if (d1->jour > d2->jour)
                 {
-                    return 1;
+                    printf("1\n");
                 }
                 else
                 {
-                    return 0;
+                    printf("0\n");
                 }
             }
         }
+    return 0;
     }
 
 
 
 int retour (void)
 {
-    enum Mois mois;
-    mois = 0;
-    unsigned annee = 0;
+    Date* d1 = NULL;
+    Date* d2 = NULL;
     char choice;
-    
+
     do{
-        nbJours(mois);
-        bissextile(annee);
+        creer_Date();
+        initialiser_Date(d1);
+        initialiser_Date(d2);
+        
+        comparer_Date(d1, d2);
+        
+        liberer_Date(&d1);
+        liberer_Date(&d2);
+        
         printf("Voulez-vous recommencer l'exercice? [oO] ? N\n");
         scanf(" %c", &choice);
         

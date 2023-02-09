@@ -36,4 +36,18 @@ void initialiser_Date(Date* d);
 void increment_Date(Date* d, unsigned n);
 short int comparer_Date( const Date* d1, const Date* d2);
 
+
+
+typedef struct {
+    char* nom;
+    char* prenom;
+    char numSecuriteSociale[16];
+} Personne;
+
+enum Sexe { INCONNUE=0,MASCULIN,FEMININ,};
+const char* SexeToString(enum Sexe s);
+Personne* creer_personne();
+void liberer_Personne();
+
+
 #endif
