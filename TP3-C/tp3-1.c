@@ -24,44 +24,43 @@ unsigned short nbJours(enum Mois mois)
         switch (mois)
         {
             case 1:
-                printf("Il y a 31 jours dans le mois de ");
+                printf("Il y a 31 jours dans le mois de %s", MoisToString(mois));
                 break;
             case 2:
-                printf("Il y a 28 jours dans le mois de ");
+                printf("Il y a 28 jours dans le mois de %s", MoisToString(mois));
                 break;
             case 3:
-                printf("Il y a 31 jours dans le mois de ");
+                printf("Il y a 31 jours dans le mois de %s", MoisToString(mois));
                 break;
             case 4:
-                printf("Il y a 30 jours dans le mois d'");
+                printf("Il y a 30 jours dans le mois d'%s", MoisToString(mois));
                 break;
             case 5:
-                printf("Il y a 31 jours dans le mois de ");
+                printf("Il y a 31 jours dans le mois de %s", MoisToString(mois));
                 break;
             case 6:
-                printf("Il y a 30 jours dans le mois de ");
+                printf("Il y a 30 jours dans le mois de %s", MoisToString(mois));
                 break;
             case 7:
-                printf("Il y a 31 jours dans le mois de ");
+                printf("Il y a 31 jours dans le mois de %s", MoisToString(mois));
                 break;
             case 8:
-                printf("Il y a 31 jours dans le mois d'");
+                printf("Il y a 31 jours dans le mois d'%s", MoisToString(mois));
                 break;
             case 9:
-                printf("Il y a 30 jours dans le mois de ");
+                printf("Il y a 30 jours dans le mois de %s", MoisToString(mois));
                 break;
             case 10:
-                printf("Il y a 31 jours dans le mois d'");
+                printf("Il y a 31 jours dans le mois d'%s", MoisToString(mois));
                 break;
             case 11:
-                printf("Il y a 30 jours dans le mois de ");
+                printf("Il y a 30 jours dans le mois de %s", MoisToString(mois));
                 break;
             case 12 :
-                printf("Il y a 31 jours dans le mois de ");
+                printf("Il y a 31 jours dans le mois de %s", MoisToString(mois));
                 break;
         }
     
-    MoisToString(mois);
     printf("\n");
     
     return mois;
@@ -175,15 +174,10 @@ void initialiser_Date(Date* d)
     {
         exit (84);
     }
-    
-    increment_Date(d, n);
 }
 
 void increment_Date(Date* d, unsigned n)
 {
-    printf("De combien de jours souhaitez-vous incrémenter votre date ?");
-    scanf("%u", &n);
-    
     for (int i = 0; i < n; i ++)
     {
         if ((d->mois == 1 || d->mois == 3 || d->mois == 5 || d->mois == 7 || d->mois == 8 || d->mois == 10 || d->mois == 12) && (bissextile(d->annee == true)))
@@ -288,16 +282,6 @@ void increment_Date(Date* d, unsigned n)
 
 short int comparer_Date( const Date* d1, const Date* d2)
 {
-    
-    d1 = (Date*)malloc(sizeof(Date));
-        if (d1 == NULL) {
-            exit(84);
-        }
-    d2 = (Date*)malloc(sizeof(Date));
-        if (d2 == NULL) {
-            exit(84);
-        }
-    
     if (d1->annee < d2->annee)
         {
             printf("-1\n");
@@ -344,10 +328,13 @@ int retour (void)
     char choice;
 
     do{
-        creer_Date();
+        d1 = creer_Date();
+        d2 = creer_Date();
         initialiser_Date(d1);
         initialiser_Date(d2);
         
+        increment_Date(d1, 5);
+        increment_Date(d2, 34);
         comparer_Date(d1, d2);
         
         liberer_Date(&d1);

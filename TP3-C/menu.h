@@ -12,5 +12,6 @@
 
 int menu(void);  // Fonction qui permettra au "main" d'accéder au "menu"
 int retour(void);
+int retour2(void);
 
 #endif /* menu_h */

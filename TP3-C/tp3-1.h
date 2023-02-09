@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
 #include <time.h>
 
 
@@ -46,8 +47,10 @@ typedef struct {
 
 enum Sexe { INCONNUE=0,MASCULIN,FEMININ,};
 const char* SexeToString(enum Sexe s);
-Personne* creer_personne();
-void liberer_Personne();
+Personne* creer_personne(void);
+void liberer_Personne(Personne ** d);
+void initialiser_Personne(Personne * d);
+void afficher_Personne(const Personne * d);
 
 
 #endif

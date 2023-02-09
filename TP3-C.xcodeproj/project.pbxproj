@@ -10,6 +10,7 @@
 		CE518AE02976A9EC000849E2 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = CE518ADF2976A9EC000849E2 /* main.c */; };
 		CE518AE82976AA29000849E2 /* menu.c in Sources */ = {isa = PBXBuildFile; fileRef = CE518AE72976AA29000849E2 /* menu.c */; };
 		CE518AEB2976AE47000849E2 /* tp3-1.c in Sources */ = {isa = PBXBuildFile; fileRef = CE518AEA2976AE47000849E2 /* tp3-1.c */; };
+		CE6D65312995019300EBBD3B /* tp3-2.c in Sources */ = {isa = PBXBuildFile; fileRef = CE6D65302995019300EBBD3B /* tp3-2.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,7 @@
 		CE518AE72976AA29000849E2 /* menu.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = menu.c; sourceTree = "<group>"; };
 		CE518AE92976AE47000849E2 /* tp3-1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "tp3-1.h"; sourceTree = "<group>"; };
 		CE518AEA2976AE47000849E2 /* tp3-1.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "tp3-1.c"; sourceTree = "<group>"; };
+		CE6D65302995019300EBBD3B /* tp3-2.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "tp3-2.c"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				CE518ADF2976A9EC000849E2 /* main.c */,
 				CE518AE72976AA29000849E2 /* menu.c */,
 				CE518AEA2976AE47000849E2 /* tp3-1.c */,
+				CE6D65302995019300EBBD3B /* tp3-2.c */,
 			);
 			path = "TP3-C";
 			sourceTree = "<group>";
@@ -131,6 +134,7 @@
 			files = (
 				CE518AEB2976AE47000849E2 /* tp3-1.c in Sources */,
 				CE518AE82976AA29000849E2 /* menu.c in Sources */,
+				CE6D65312995019300EBBD3B /* tp3-2.c in Sources */,
 				CE518AE02976A9EC000849E2 /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

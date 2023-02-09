@@ -24,7 +24,7 @@ int menu(void)
                 retour();
                 break;
             case 2 :
-                
+                retour2();
                 break;
             default:
                 printf("Veuillez selectionner un exercice entre 1 et 2 \n");
