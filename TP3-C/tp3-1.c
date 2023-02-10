@@ -24,40 +24,40 @@ unsigned short nbJours(enum Mois mois)
         switch (mois)
         {
             case 1:
-                printf("Il y a 31 jours dans le mois de %s", MoisToString(mois));
+                return 31;
                 break;
             case 2:
-                printf("Il y a 28 jours dans le mois de %s", MoisToString(mois));
+                return 28;
                 break;
             case 3:
-                printf("Il y a 31 jours dans le mois de %s", MoisToString(mois));
+                return 31;
                 break;
             case 4:
-                printf("Il y a 30 jours dans le mois d'%s", MoisToString(mois));
+                return 30;
                 break;
             case 5:
-                printf("Il y a 31 jours dans le mois de %s", MoisToString(mois));
+                return 31;
                 break;
             case 6:
-                printf("Il y a 30 jours dans le mois de %s", MoisToString(mois));
+                return 30;
                 break;
             case 7:
-                printf("Il y a 31 jours dans le mois de %s", MoisToString(mois));
+                return 31;
                 break;
             case 8:
-                printf("Il y a 31 jours dans le mois d'%s", MoisToString(mois));
+                return 31;
                 break;
             case 9:
-                printf("Il y a 30 jours dans le mois de %s", MoisToString(mois));
+                return 30;
                 break;
             case 10:
-                printf("Il y a 31 jours dans le mois d'%s", MoisToString(mois));
+                return 31;
                 break;
             case 11:
-                printf("Il y a 30 jours dans le mois de %s", MoisToString(mois));
+                return 30;
                 break;
             case 12 :
-                printf("Il y a 31 jours dans le mois de %s", MoisToString(mois));
+                return 31;
                 break;
         }
     
@@ -68,8 +68,6 @@ unsigned short nbJours(enum Mois mois)
 
 bool bissextile(unsigned annee)
 {
-
-
     if(annee % 4 == 0 && annee % 100 != 0  )
 
         {
@@ -79,8 +77,6 @@ bool bissextile(unsigned annee)
     {
         return false;
     }
-
-
 }
 
 const char* MoisToString(enum Mois mois)
@@ -145,8 +141,6 @@ void initialiser_Date(Date* d)
             exit(84);
         }
     
-    unsigned int n = 0;
-    
     printf ("Rentrez le jour de votre date\n");
     scanf("%hd", &d->jour);
     
@@ -154,8 +148,6 @@ void initialiser_Date(Date* d)
     {
         exit (84);
     }
-    
-    nbJours(d->mois);
     
     if (d->jour == 31 && (d->mois == 2 || d->mois == 4 || d->mois == 6 || d->mois == 9 || d->mois == 11 ))
         {
@@ -166,6 +158,14 @@ void initialiser_Date(Date* d)
         {
         exit (84);
         }
+    
+    printf ("Rentrez le mois de votre date\n");
+    scanf("%d", &d->mois);
+    
+    if (d->mois < 1 || d->mois > 12)
+    {
+        exit (84);
+    }
     
     printf("Rentrez l'année de votre date\n");
     scanf("%d", &d->annee);
@@ -180,102 +180,19 @@ void increment_Date(Date* d, unsigned n)
 {
     for (int i = 0; i < n; i ++)
     {
-        if ((d->mois == 1 || d->mois == 3 || d->mois == 5 || d->mois == 7 || d->mois == 8 || d->mois == 10 || d->mois == 12) && (bissextile(d->annee == true)))
-        {
             d->jour ++;
             
-            if ((i % 31) == 0)
+            if ((d->jour + i) > (nbJours(d->mois)))
             {
                 d->jour = 1;
                 d->mois ++;
             }
-            if ((i % 366) == 0)
+            if (d->mois > 12)
             {
                 d->mois = 1;
                 d->annee ++;
             }
         }
-        
-        if ((d->mois == 4 || d->mois == 6 || d->mois == 9 || d->mois == 11) && (bissextile(d->annee == true)))
-        {
-            d->jour ++;
-            
-            if ((i % 30) == 0)
-            {
-                d->jour = 1;
-                d->mois ++;
-            }
-            if ((i % 366) == 0)
-            {
-                d->mois = 1;
-                d->annee ++;
-            }
-        }
-        
-        if ((d->mois == 1 || d->mois == 3 || d->mois == 5 || d->mois == 7 || d->mois == 8 || d->mois == 10 || d->mois == 12) && (bissextile(d->annee == false)))
-        {
-            d->jour ++;
-            
-            if ((i % 31) == 0)
-            {
-                d->jour = 1;
-                d->mois ++;
-            }
-            if ((i % 365) == 0)
-            {
-                d->mois = 1;
-                d->annee ++;
-            }
-        }
-        
-        if ((d->mois == 4 || d->mois == 6 || d->mois == 9 || d->mois == 11) && (bissextile(d->annee == false)))
-        {
-            d->jour ++;
-            
-            if ((i % 30) == 0)
-            {
-                d->jour = 1;
-                d->mois ++;
-            }
-            if ((i % 365) == 0)
-            {
-                d->mois = 1;
-                d->annee ++;
-            }
-        }
-        
-        if ((d->mois == 2) && (bissextile(d->annee == true)))
-        {
-            d->jour ++;
-            
-            if ((i % 29) == 0)
-            {
-                d->jour = 1;
-                d->mois ++;
-            }
-            if ((i % 366) == 0)
-            {
-                d->mois = 1;
-                d->annee ++;
-            }
-        }
-        
-        if ((d->mois == 2) && (bissextile(d->annee == false)))
-        {
-            d->jour ++;
-            
-            if ((i % 28) == 0)
-            {
-                d->jour = 1;
-                d->mois ++;
-            }
-            if ((i % 365) == 0)
-            {
-                d->mois = 1;
-                d->annee ++;
-            }
-        }
-    }
     
     printf("\n La date incrémentée est : %hd/%d/%d\n", d->jour, d->mois, d->annee);
 }
